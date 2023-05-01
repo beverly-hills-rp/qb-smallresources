@@ -39,6 +39,7 @@ local function ToggleSeatbelt()
     seatbeltOn = not seatbeltOn
     SeatBeltLoop()
     TriggerEvent("seatbelt:client:ToggleSeatbelt")
+    TriggerEvent('QBCore:Client:State:seatbelt', seatbeltOn)
     TriggerServerEvent("InteractSound_SV:PlayWithinDistance", 5.0, seatbeltOn and "carbuckle" or "carunbuckle", 0.25)
 end
 
@@ -65,6 +66,7 @@ function SeatBeltLoop()
                 seatbeltOn = false
                 harnessOn = false
                 TriggerEvent("seatbelt:client:ToggleSeatbelt")
+                TriggerEvent('QBCore:Client:State:seatbelt', seatbeltOn)
                 break
             end
             if not seatbeltOn and not harnessOn then break end
